@@ -1,0 +1,46 @@
+.container {
+  border: solid 2px green;
+  container-type: size;
+  container-name: container;
+  resize: vertical;
+  overflow: auto;
+  min-height: 56px;
+}
+
+.content {
+  border: solid 1px red;
+  width: 90%;
+  position: relative;
+  height: 100%;
+}
+
+/* Initial emoji */
+.content:after {
+  border: solid 1px pink;
+  content: "🧑‍🌾";
+  font-size: 2rem;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+/* Stage 1: sprout */
+@container container (height > 120px) {
+  .content:after {
+    content: "🌱";
+  }
+}
+
+/* Stage 2: plant */
+@container container (height > 100px) {
+  .content:after {
+    content: "🌿";
+  }
+}
+
+/* Stage 3: tree */
+@container container (height > 200px) {
+  .content:after {
+    content: "🌳";
+  }
+}
