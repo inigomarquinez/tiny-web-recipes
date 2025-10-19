@@ -11,14 +11,11 @@ export default defineConfig({
         title: 'Tiny Web Recipes',
         social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/inigomarquinez/tiny-web-recipes' }],
         tableOfContents: false,
+        lastUpdated: true,
         sidebar: [
             {
                 label: 'HTML',
                 autogenerate: { directory: 'html' },
-                // items: [
-                // 	// Each item here is one entry in the navigation menu.
-                // 	{ label: 'Example Guide', slug: 'guides/example' },
-                // ],
             },
             {
                 label: 'CSS',
