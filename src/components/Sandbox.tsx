@@ -10,7 +10,7 @@ ${commonCssFile}
 
 ${cssFile}
 `;
-}
+};
 
 const mergeHtml = (title: string, htmlFile: string): string => {
   const compiled = _.template(commonHtmlFile);
@@ -19,14 +19,14 @@ const mergeHtml = (title: string, htmlFile: string): string => {
     title,
     body: htmlFile,
   });
-}
+};
 
 const mergeJs = (jsFile: string): string => {
   return `
 ${commonJsFile}
 ${jsFile}
   `;
-}
+};
 
 interface SandpackProps {
   title: string;
@@ -41,7 +41,7 @@ export default ({ title, htmlFile, jsFile = "", cssFile = "" }: SandpackProps) =
     files={{
       "/index.html": mergeHtml(title, htmlFile),
       "/index.js": mergeJs(jsFile),
-      "/index.css": mergeCss(cssFile)
+      "/index.css": mergeCss(cssFile),
     }}
     options={{
       showTabs: true,
