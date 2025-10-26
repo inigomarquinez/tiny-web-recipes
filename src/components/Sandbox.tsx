@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import commonCssFile from "@/codeExamples/common/common.css?raw";
 import commonHtmlFile from "@/codeExamples/common/common.html?raw";
 import commonJsFile from "@/codeExamples/common/common.js?raw";
+import { useState, useEffect } from "react";
 
 const mergeCss = (cssFile: string): string => {
   return `
