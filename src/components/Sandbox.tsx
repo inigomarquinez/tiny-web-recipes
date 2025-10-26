@@ -3,6 +3,7 @@ import _ from "lodash";
 import commonCssFile from "@/codeExamples/common/common.css?raw";
 import commonHtmlFile from "@/codeExamples/common/common.html?raw";
 import commonJsFile from "@/codeExamples/common/common.js?raw";
+import { useState, useEffect } from "react";
 
 const mergeCss = (cssFile: string): string => {
   return `
@@ -28,26 +29,58 @@ ${jsFile}
   `;
 };
 
+const fileModules = import.meta.glob("/src/codeExamples/**/index.{html,css,js}", {
+  query: "?raw",
+  import: "default",
+});
+
 interface SandpackProps {
   title: string;
-  htmlFile: string;
-  jsFile: string;
-  cssFile: string;
+  path: string;
 }
 
-export default ({ title, htmlFile, jsFile = "", cssFile = "" }: SandpackProps) => (
-  <Sandpack
-    template="vanilla"
-    files={{
-      "/index.html": mergeHtml(title, htmlFile),
-      "/index.js": mergeJs(jsFile),
-      "/index.css": mergeCss(cssFile),
-    }}
-    options={{
-      showTabs: true,
-      showLineNumbers: true,
-      editorHeight: 400,
-      wrapContent: true,
-    }}
-  />
-);
+export default ({ title, path }: SandpackProps) => {
+  const [files, setFiles] = useState({
+    "/index.html": "",
+    "/index.css": "",
+    "/index.js": "",
+  });
+  const [isLoaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const basePath = `/src/codeExamples/${path}`;
+    const htmlPath = `${basePath}/index.html`;
+    const cssPath = `${basePath}/index.css`;
+    const jsPath = `${basePath}/index.js`;
+
+    const loadFiles = async () => {
+      const [html, css, js] = await Promise.all([
+        fileModules[htmlPath]?.() ?? Promise.resolve(""),
+        fileModules[cssPath]?.() ?? Promise.resolve(""),
+        fileModules[jsPath]?.() ?? Promise.resolve(""),
+      ]);
+
+      setFiles({
+        "/index.html": mergeHtml(title, html as string),
+        "/index.css": mergeCss(css as string),
+        "/index.js": mergeJs(js as string),
+      });
+      setLoaded(true);
+    };
+
+    loadFiles();
+  }, [path, title]);
+
+  return isLoaded ? (
+    <Sandpack
+      template="vanilla"
+      files={files}
+      options={{
+        showTabs: true,
+        showLineNumbers: true,
+        editorHeight: 400,
+        wrapContent: true,
+      }}
+    />
+  ) : <div>Loading</div>
+};

@@ -1,11 +1,9 @@
 ---
 title: \@container Queries
-description: Responsive Emoji Toggles Using the CSS "@container" Queries.
+description: Responsive emoji toggles using the CSS "@container" queries.
 ---
 
-import Sandbox from "@/components/Sandbox.tsx";
-import htmlFile from "@/codeExamples/css/ContainerQueries/index.html?raw";
-import cssFile from "@/codeExamples/css/ContainerQueries/index.css?raw";
+import Sandbox from "@/components/Sandbox";
 
 - [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/container-type)
 - [Can I use 'container-type'?](https://caniuse.com/?search=container-type)
@@ -15,7 +13,6 @@ import cssFile from "@/codeExamples/css/ContainerQueries/index.css?raw";
 
 <Sandbox
   client:load
-  title="container queries Sandbox"
-  htmlFile={htmlFile}
-  cssFile={cssFile}
+  title={frontmatter.description}
+  path="css/ContainerQueries"
 />

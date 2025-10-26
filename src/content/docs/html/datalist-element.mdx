@@ -3,9 +3,7 @@ title: <datalist>
 description: datalist
 ---
 
-import Sandbox from "@/components/Sandbox.tsx";
-import htmlFile from "@/codeExamples/html/DatalistElement/index.html?raw";
-import cssFile from "@/codeExamples/html/DatalistElement/index.css?raw";
+import Sandbox from "@/components/Sandbox";
 
 - [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/datalist)
 
@@ -13,7 +11,6 @@ import cssFile from "@/codeExamples/html/DatalistElement/index.css?raw";
 
 <Sandbox
   client:load
-  title="datalist element Sandbox"
-  htmlFile={htmlFile}
-  cssFile={cssFile}
+  title={frontmatter.description}
+  path="html/DatalistElement"
 />
