@@ -1,0 +1,46 @@
+---
+import Sandbox from "@/components/Sandbox";
+
+interface Props {
+  title: string;
+  path: string;
+  mdnLink?: string;
+  canIUseLink?: string;
+  ideaLink?: string;
+}
+const { title, path, mdnLink, canIUseLink, ideaLink } = Astro.props;
+---
+
+<ul>
+  {
+    mdnLink && (
+      <li>
+        <a href={mdnLink} target="_blank" rel="noopener noreferrer">
+          MDN Documentation
+        </a>
+      </li>
+    )
+  }
+  {
+    canIUseLink && (
+      <li>
+        <a href={canIUseLink} target="_blank" rel="noopener noreferrer">
+          Can I use?
+        </a>
+      </li>
+    )
+  }
+  {
+    ideaLink && (
+      <li>
+        <a href={ideaLink} target="_blank" rel="noopener noreferrer">
+          💡 Original idea
+        </a>
+      </li>
+    )
+  }
+</ul>
+
+<h2>Code Example</h2>
+
+<Sandbox client:load title={title} path={path} />
