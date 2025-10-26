@@ -9,12 +9,12 @@ function calculateDiscount() {
   const discountAmount = (price * discount) / 100;
   const finalPrice = price - discountAmount;
 
-  const formatedFinalPrice = new Intl.NumberFormat("en", { style: "currency", currency: "EUR" }).format(
+  const formattedFinalPrice = new Intl.NumberFormat("en", { style: "currency", currency: "EUR" }).format(
     finalPrice,
   )
 
   discountValue.textContent = discount;
-  finalAmount.textContent = formatedFinalPrice;
+  finalAmount.textContent = formattedFinalPrice;
 
   discountSlider.style.setProperty('--progress', `${discount}%`);
 }
