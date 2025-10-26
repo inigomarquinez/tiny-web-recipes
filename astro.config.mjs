@@ -23,6 +23,10 @@ export default defineConfig({
           label: "CSS",
           autogenerate: { directory: "css" },
         },
+        {
+          label: "JS",
+          autogenerate: { directory: "js" },
+        },
       ],
     }),
     react(),
