@@ -1,9 +1,9 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import _ from "lodash";
+import { useEffect, useState } from "react";
 import commonCssFile from "@/codeExamples/common/common.css?raw";
 import commonHtmlFile from "@/codeExamples/common/common.html?raw";
 import commonJsFile from "@/codeExamples/common/common.js?raw";
-import { useState, useEffect } from "react";
 
 const mergeCss = (cssFile: string): string => {
   return `
@@ -82,5 +82,7 @@ export default ({ title, path }: SandpackProps) => {
         wrapContent: true,
       }}
     />
-  ) : <div>Loading</div>
+  ) : (
+    <div>Loading</div>
+  );
 };
